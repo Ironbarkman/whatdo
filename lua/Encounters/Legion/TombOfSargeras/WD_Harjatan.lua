@@ -9,7 +9,7 @@ WD_Addon_Instance:AddBarConfig({
     spellId = 231729, -- spell id
     timer = 6, -- in seconds
     description = "|cffff0000DROP|r |cffffffffpool outside!|r",
-    sendChatMeessageSay = "I am DROPPING a pool!"
+    sendChatMeessageSay = "I am DROPPING ".. GetSpellLink(231768) .."!"
 })
 
 -- Frosty Discharge: Stack back up

@@ -10,7 +10,7 @@ WD_Addon_Instance:AddBarConfig({
     spellId = 230139, -- spell id
     timer = 6, -- in seconds
     description = "|cffff0000POSITION|r |cfffffffffor hydra shot!|r",
-    sendChatMeessageSay = "SOAK my hydra shot!"
+    sendChatMeessageSay = "SOAK my "..GetSpellLink(230139).."!"
 })
 
 -- Hydra Shot: soak (in line) not on me
@@ -20,5 +20,5 @@ WD_Addon_Instance:AddBarConfig({
     spellId = 230139, -- spell id
     timer = 6, -- in seconds
     description = "|cffff0000SOAK|r |cffffffffhydra shot!|r",
-    sendChatMeessageSay = "SOAKING hydra shot!"
+    sendChatMeessageSay = "SOAKING "..GetSpellLink(230139).."!"
 })

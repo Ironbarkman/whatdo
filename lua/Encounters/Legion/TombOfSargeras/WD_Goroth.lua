@@ -8,7 +8,7 @@ WD_Addon_Instance:AddBarConfig({
     spellId = 233062, -- spell id
     timer = 10, -- in seconds
     description = "|cffff0000HIDE|r |cffffffffbehind any pillar!|r",
-    sendChatMeessageSay = "HIDE behind any pillar!"
+    sendChatMeessageSay = "HIDE behind any ".. GetSpellLink(233021) .."!"
 })
 
 -- Shattering Star: Hide behind 2+ pillars to avoid damage
@@ -18,7 +18,7 @@ WD_Addon_Instance:AddBarConfig({
     spellId = 233272, -- spell id
     timer = 6, -- in seconds
     description = "|cffff0000HIDE|r |cffffffffbehind 2+ pillars!|r",
-    sendChatMeessageSay = "I am HIDING behind 2+ pillars!"
+    sendChatMeessageSay = "I am HIDING behind 2+ ".. GetSpellLink(233021) .."s!"
 })
 
 -- Crashing Comet: Avoid hitting pillars
@@ -28,5 +28,5 @@ WD_Addon_Instance:AddBarConfig({
     spellId = 232249, -- spell id
     timer = 6, -- in seconds
     description = "|cffff0000AVOID|r |cffffffffpillars!|r",
-    sendChatMeessageSay = "I am AVOIDING hitting pillars!"
+    sendChatMeessageSay = "I am AVOIDING hitting ".. GetSpellLink(233021) .."s!"
 })
