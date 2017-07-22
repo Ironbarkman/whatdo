@@ -1,0 +1,25 @@
+## Interface: 70200
+## Title: WhatDo
+## Author: Ironbarkman of Area 52
+## Version: 0.2
+## SavedVariables: WD_cookie
+## DefaultState: enabled
+## Notes: "Raid timers for important mechanics"
+
+# Helpers and core:
+lua\Core\WD_Helpers.lua
+lua\Core\WD_EventParser.lua
+lua\Core\WD_ProgressContainerFrame.lua
+lua\Core\WD_ProgressFrame.lua
+
+# Main entry:
+lua\WD_Addon.lua
+
+# Encounters:
+lua\Encounters\Debug\WD_Test_Debug_Resto_Druid.lua
+
+# Encounters: Legion: Tomb of Sargeras
+lua\Encounters\Legion\TombOfSargeras\WD_Goroth.lua
+lua\Encounters\Legion\TombOfSargeras\WD_Harjatan.lua
+lua\Encounters\Legion\TombOfSargeras\WD_Mistress_Sasszine.lua
+lua\Encounters\Legion\TombOfSargeras\WD_Kiljaeden.lua
