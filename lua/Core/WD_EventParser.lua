@@ -7,8 +7,6 @@ function WD_EventParser:Constructor()
     self.match = false
     self.spellId = nil
     self.spellName = nil
-
-
 end
 function WD_EventParser:DisplayBarConfigs_COMBAT_LOG_EVENT_UNFILTERED(wdAddon, barConfigs, timestamp, event, hideCaster, sourceGUID, sourceName, sourceFlags, sourceRaidFlags, destGUID, destName, destFlags, destRaidFlags, ...)
 

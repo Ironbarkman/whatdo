@@ -116,4 +116,4 @@ frame:SetScript("OnEvent", function(self, event, arg1)
     if event == "ADDON_LOADED" and arg1 == "WhatDo" then
         WD_Addon_Instance:AddonLoaded()
     end
-end);
+end)
