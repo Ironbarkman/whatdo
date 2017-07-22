@@ -1,7 +1,7 @@
 ## Interface: 70200
 ## Title: WhatDo
 ## Author: Ironbarkman of Area 52
-## Version: 0.3a
+## Version: 0.3b
 ## SavedVariables: WD_cookie
 ## DefaultState: enabled
 ## Notes: "Raid timers for important mechanics"
