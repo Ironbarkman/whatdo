@@ -52,14 +52,14 @@ function WD_Progress_Frame:Initialize()
     -- Add action description
     local actionDescriptionTextFrame = progressBarFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal");
     actionDescriptionTextFrame:SetFont("Fonts\\ARIALN.TTF", 20)
-    actionDescriptionTextFrame:SetText("HIDE behind 2+ pillars!")
+    actionDescriptionTextFrame:SetText("Spell Name")
     actionDescriptionTextFrame:SetTextColor(1, 1, 1, 1)
     actionDescriptionTextFrame:SetPoint("LEFT", 4, 0)
     
     -- Add timer text
     local timerTextFrame = progressBarFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal");
     timerTextFrame:SetFont("Fonts\\ARIALN.TTF", 20)
-    timerTextFrame:SetText("0.5")
+    timerTextFrame:SetText("0.0")
     timerTextFrame:SetTextColor(1, 1, 1, 1)
     timerTextFrame:SetPoint("RIGHT", -4, 0)
     

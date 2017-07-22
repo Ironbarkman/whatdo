@@ -15,7 +15,6 @@ function WD_EventParser:DisplayBarConfigs_COMBAT_LOG_EVENT_UNFILTERED(wdAddon, b
     elseif event == "SPELL_AURA_APPLIED" then
         self:DisplayBarConfigs_SPELL_AURA_APPLIED(wdAddon, barConfigs.SPELL_AURA_APPLIED, sourceGUID, destGUID, ...)
     elseif event == "SPELL_AURA_REFRESH" then
-        
         self:DisplayBarConfigs_SPELL_AURA_REFRESH(wdAddon, barConfigs.SPELL_AURA_REFRESH, sourceGUID, destGUID, ...)
     end
 

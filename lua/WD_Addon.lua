@@ -28,7 +28,7 @@ function WD_Addon:AddonLoaded()
     self:BindAnimationEvents()
     self:BindBaseEvents()
     
-    print("|cffff00ff** WhatDo v0.2a Loaded! |cffffffff[Created By: Ironbarkman of Area 52]")
+    print("|cffff00ff** WhatDo v0.3 Loaded! |cffffffff[Created By: Ironbarkman of Area 52]")
 end
 function WD_Addon:CreateProgressFrames()
     local progressContainerFrame = WD_Progress_Container_Frame()
@@ -104,7 +104,28 @@ end
 -- Bind to /wd command
 SLASH_WHATDO1 = "/wd";
 function SlashCmdList.WHATDO(msg)
-    print("WhatDo has no options menu yet...", msg);
+    local messagePrefix="|cffff00ffWhatDo|cffffffff: "
+    local messages={}
+
+    if msg=="lock" then
+        WD_Addon_Instance.progressContainerFrame:Lock()
+        table.insert(messages,messagePrefix.."Frame locked!")
+    elseif msg=="unlock" then
+        WD_Addon_Instance.progressContainerFrame:Unlock()
+        table.insert(messages,messagePrefix.."Frame unlocked!")
+    elseif msg=="reset" then
+        WD_Addon_Instance.progressContainerFrame:Reset()
+        table.insert(messages,messagePrefix.."Frame reset!")
+    else
+        table.insert(messages,messagePrefix.." options:")
+        table.insert(messages,"- '|cff00ffff/wd lock|cffffffff' to lock movement frame")
+        table.insert(messages,"- '|cff00ffff/wd unlock|cffffffff' to unlock movement frame.")
+        table.insert(messages,"- '|cff00ffff/wd reset|cffffffff' to reset frame position.")
+    end
+
+    for i=1,#messages do
+        print(messages[i])
+    end
 end
 
 -- Load addon
