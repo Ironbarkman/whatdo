@@ -28,7 +28,7 @@ function WD_Addon:AddonLoaded()
     self:BindAnimationEvents()
     self:BindBaseEvents()
     
-    print("|cffff00ff** WhatDo v0.2 Loaded! |cffffffff[Created By: Ironbarkman of Area 52]")
+    print("|cffff00ff** WhatDo v0.2a Loaded! |cffffffff[Created By: Ironbarkman of Area 52]")
 end
 function WD_Addon:CreateProgressFrames()
     local progressContainerFrame = WD_Progress_Container_Frame()
@@ -101,7 +101,7 @@ function WD_Addon:LoadBarConfigs()
     end
 end
 
--- Bind to /sr command
+-- Bind to /wd command
 SLASH_WHATDO1 = "/wd";
 function SlashCmdList.WHATDO(msg)
     print("WhatDo has no options menu yet...", msg);
