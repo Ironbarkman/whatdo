@@ -1,6 +1,8 @@
 WD_Addon = WD_Helpers_Extend(nil)
 
 function WD_Addon:Constructor()
+    self.version = "0.3a"
+    
     self.options = {
         totalProgressBars = 4
     }
@@ -28,7 +30,7 @@ function WD_Addon:AddonLoaded()
     self:BindAnimationEvents()
     self:BindBaseEvents()
     
-    print("|cffff00ff** WhatDo v0.3 Loaded! |cffffffff[Created By: Ironbarkman of Area 52]")
+    print("|cffff00ff** WhatDo v" .. self.version .. " Loaded! |cffffffff[Created By: Ironbarkman of Area 52]")
 end
 function WD_Addon:CreateProgressFrames()
     local progressContainerFrame = WD_Progress_Container_Frame()
@@ -69,10 +71,10 @@ function WD_Addon:BindBaseEvents()
     self.eventFrames.COMBAT_LOG_EVENT_UNFILTERED = EventFrame_COMBAT_LOG_EVENT_UNFILTERED
 end
 function WD_Addon:DisplayBarConfig(barConfig)
-    if barConfig.sendChatMeessageSay~=nil then
-        SendChatMessage(barConfig.sendChatMeessageSay.." [WhatDo]","SAY")
+    if barConfig.sendChatMeessageSay ~= nil then
+        SendChatMessage(barConfig.sendChatMeessageSay .. " [WhatDo]", "SAY")
     end
-
+    
     local freeProgressFrame = self:FindFreeProgressFrame()-- Find a frame that's not visible
     if freeProgressFrame ~= nil then
         freeProgressFrame:SetBarConfig(barConfig)
@@ -104,26 +106,29 @@ end
 -- Bind to /wd command
 SLASH_WHATDO1 = "/wd";
 function SlashCmdList.WHATDO(msg)
-    local messagePrefix="|cffff00ffWhatDo|cffffffff: "
-    local messages={}
-
-    if msg=="lock" then
+    local messagePrefix = "|cffff00ffWhatDo|cffffffff: "
+    local messages = {}
+    
+    if msg == "lock" then
         WD_Addon_Instance.progressContainerFrame:Lock()
-        table.insert(messages,messagePrefix.."Frame locked!")
-    elseif msg=="unlock" then
+        table.insert(messages, messagePrefix .. "Frame locked!")
+    elseif msg == "unlock" then
         WD_Addon_Instance.progressContainerFrame:Unlock()
-        table.insert(messages,messagePrefix.."Frame unlocked!")
-    elseif msg=="reset" then
+        table.insert(messages, messagePrefix .. "Frame unlocked!")
+    elseif msg == "reset" then
         WD_Addon_Instance.progressContainerFrame:Reset()
-        table.insert(messages,messagePrefix.."Frame reset!")
+        table.insert(messages, messagePrefix .. "Frame reset!")
+    elseif msg == "version" then
+        table.insert(messages, messagePrefix .. "current version is |cff00ffff" .. WD_Addon_Instance.version)
     else
-        table.insert(messages,messagePrefix.." options:")
-        table.insert(messages,"- '|cff00ffff/wd lock|cffffffff' to lock movement frame")
-        table.insert(messages,"- '|cff00ffff/wd unlock|cffffffff' to unlock movement frame.")
-        table.insert(messages,"- '|cff00ffff/wd reset|cffffffff' to reset frame position.")
+        table.insert(messages, messagePrefix .. " options:")
+        table.insert(messages, "- '|cff00ffff/wd lock|cffffffff' to lock movement frame")
+        table.insert(messages, "- '|cff00ffff/wd unlock|cffffffff' to unlock movement frame.")
+        table.insert(messages, "- '|cff00ffff/wd reset|cffffffff' to reset frame position.")
+        table.insert(messages, "- '|cff00ffff/wd version|cffffffff' show current version.")
     end
-
-    for i=1,#messages do
+    
+    for i = 1, #messages do
         print(messages[i])
     end
 end
