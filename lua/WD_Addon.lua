@@ -1,7 +1,7 @@
 WD_Addon = WD_Helpers_Extend(nil)
 
 function WD_Addon:Constructor()
-    self.version = "0.3b"
+    self.version = "0.4"
     
     self.options = {
         totalProgressBars = 4
@@ -13,7 +13,9 @@ function WD_Addon:Constructor()
     self.barConfigs = {-- Holds encounter information for when we need to trigger things
         SPELL_CAST_START = {},
         SPELL_AURA_APPLIED = {},
-        SPELL_AURA_REFRESH = {}
+        SPELL_AURA_REFRESH = {},
+        SPELL_CAST_SUCCESS = {},
+        CHAT_MSG_RAID_BOSS_EMOTE = {}
     }
     
     self.eventParser = WD_EventParser()
@@ -69,6 +71,16 @@ function WD_Addon:BindBaseEvents()
             self.eventParser:DisplayBarConfigs_COMBAT_LOG_EVENT_UNFILTERED(self, self.barConfigs, ...)
         end)
     self.eventFrames.COMBAT_LOG_EVENT_UNFILTERED = EventFrame_COMBAT_LOG_EVENT_UNFILTERED
+    
+    local EventFrame_CHAT_MSG_RAID_BOSS_EMOTE = CreateFrame("Frame")
+    EventFrame_CHAT_MSG_RAID_BOSS_EMOTE:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
+    EventFrame_CHAT_MSG_RAID_BOSS_EMOTE:SetScript("OnEvent",
+        function(_, _, ...)
+            self.eventParser:DisplayBarConfigs_CHAT_MSG_RAID_BOSS_EMOTE(self, self.barConfigs.CHAT_MSG_RAID_BOSS_EMOTE, ...)
+        end)
+    self.eventFrames.CHAT_MSG_RAID_BOSS_EMOTE = EventFrame_CHAT_MSG_RAID_BOSS_EMOTE
+
+    
 end
 function WD_Addon:DisplayBarConfig(barConfig)
     if barConfig.sendChatMeessageSay ~= nil then
@@ -122,10 +134,10 @@ function SlashCmdList.WHATDO(msg)
         table.insert(messages, messagePrefix .. "current version is |cff00ffff" .. WD_Addon_Instance.version)
     else
         table.insert(messages, messagePrefix .. " options:")
-        table.insert(messages, "- '|cff00ffff/wd lock|cffffffff' to lock movement frame")
-        table.insert(messages, "- '|cff00ffff/wd unlock|cffffffff' to unlock movement frame.")
-        table.insert(messages, "- '|cff00ffff/wd reset|cffffffff' to reset frame position.")
-        table.insert(messages, "- '|cff00ffff/wd version|cffffffff' show current version.")
+        table.insert(messages, "  |cff00ffff/wd lock|cffffffff to lock movement frame")
+        table.insert(messages, "  |cff00ffff/wd unlock|cffffffff to unlock movement frame.")
+        table.insert(messages, "  |cff00ffff/wd reset|cffffffff to reset frame position.")
+        table.insert(messages, "  |cff00ffff/wd version|cffffffff to show current version.")
     end
     
     for i = 1, #messages do

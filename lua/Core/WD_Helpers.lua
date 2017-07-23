@@ -22,3 +22,15 @@ function WD_Helpers_Extend(Base, Callback)
     setmetatable(NewClass, NewClassMetatable)-- so we can use __call, __call = NewClass()
     return NewClass
 end
+function WD_HasAura(unitId, aura)
+    local foundAura = false
+    
+    for a = 1, 40 do
+        local name, rank, icon, count, dispelType, duration, expires, caster, isStealable, nameplateShowPersonal, spellID = UnitAura(unitId, a)
+        if spellID ~= nil and spellID == aura then
+            foundAura = true
+        end
+    end
+    
+    return foundAura
+end

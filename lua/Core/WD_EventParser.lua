@@ -12,12 +12,31 @@ function WD_EventParser:DisplayBarConfigs_COMBAT_LOG_EVENT_UNFILTERED(wdAddon, b
 
     if event == "SPELL_CAST_START" then
         self:DisplayBarConfigs_SPELL_CAST_START(wdAddon, barConfigs.SPELL_CAST_START, sourceGUID, destGUID, ...)
+    elseif event == "SPELL_CAST_SUCCESS" then
+        self:DisplayBarConfigs_SPELL_CAST_START(wdAddon, barConfigs.SPELL_CAST_SUCCESS, sourceGUID, destGUID, ...)
     elseif event == "SPELL_AURA_APPLIED" then
         self:DisplayBarConfigs_SPELL_AURA_APPLIED(wdAddon, barConfigs.SPELL_AURA_APPLIED, sourceGUID, destGUID, ...)
     elseif event == "SPELL_AURA_REFRESH" then
         self:DisplayBarConfigs_SPELL_AURA_REFRESH(wdAddon, barConfigs.SPELL_AURA_REFRESH, sourceGUID, destGUID, ...)
     end
 end
+
+function WD_EventParser:DisplayBarConfigs_CHAT_MSG_RAID_BOSS_EMOTE(wdAddon, barConfigs, message,sender, ...)
+    for i = 1, #barConfigs do
+        self.barConfig = barConfigs[i]
+        self.match = true
+        
+        if self.barConfig.messageContains ~= nil and message:find(self.barConfig.messageContains)==nil then
+            self.match = false
+        end
+        
+        if self.match then
+            wdAddon:DisplayBarConfig(self.barConfig)
+        end
+    end
+end
+
+
 function WD_EventParser:DisplayBarConfigs_SPELL_CAST_START(wdAddon, barConfigs, sourceGUID, destGUID, ...)
     self.spellId = ...
     
@@ -27,6 +46,16 @@ function WD_EventParser:DisplayBarConfigs_SPELL_CAST_START(wdAddon, barConfigs, 
         
         if self.barConfig.spellId ~= nil and self.barConfig.spellId ~= self.spellId then
             self.match = false
+        end
+
+        if self.barConfig.withPlayerAura ~= nil then
+            if WD_HasAura("player",self.barConfig.withPlayerAura)~=true then
+                self.match = false
+            end
+
+            if foundAura==false then
+                self.match = false
+            end
         end
         
         if self.match then
@@ -52,6 +81,12 @@ function WD_EventParser:DisplayBarConfigs_SPELL_AURA_APPLIED(wdAddon, barConfigs
         if self.barConfig.notDestination ~= nil and UnitGUID(self.barConfig.notDestination) == destGUID then
             self.match = false
         end
+        
+        if self.barConfig.notRole ~= nil and UnitGroupRolesAssigned("player")~=self.barConfig.notRole then
+            self.match = false
+        end
+
+        
         
         if self.match then
             wdAddon:DisplayBarConfig(self.barConfig)
