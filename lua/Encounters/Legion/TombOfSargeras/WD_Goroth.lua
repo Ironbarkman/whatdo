@@ -24,7 +24,7 @@ WD_Addon_Instance:AddBarConfig({
 -- Crashing Comet: Avoid hitting pillars
 WD_Addon_Instance:AddBarConfig({
     type = "SPELL_AURA_APPLIED",
-    target = "player", -- ensure that I am the one getting this debuff
+    destination = "player", -- ensure that I am the one getting this debuff
     spellId = 232249, -- spell id
     timer = 6, -- in seconds
     description = "|cffff0000AVOID|r |cffffffffpillars!|r",
