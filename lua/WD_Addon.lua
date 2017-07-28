@@ -1,7 +1,7 @@
 WD_Addon = WD_Helpers_Extend(nil)
 
 function WD_Addon:Constructor()
-    self.version = "0.4"
+    self.version = "0.4a"
     
     self.options = {
         totalProgressBars = 4
